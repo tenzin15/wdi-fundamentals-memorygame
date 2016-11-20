@@ -19,12 +19,16 @@ function isMatch() {
 		alert("You found a match.")
 	else
 		alert("No match! Sorry, try again.")
+	
+	setTimeout(resetImages, 2000);
+}
 
+function resetImages() {
 	var card = document.getElementsByClassName('card');
-	// idx = 0;
-	// while (idx < card.length) {
-	// 	card[idx++].innerHTML = '<img src = \'facedown.jpg\' alt = \'Card face down\'>';
-	// }
+	idx = 0;
+	while (idx < card.length) {
+		card[idx++].innerHTML = '<img src = \'facedown.jpg\' alt = \'Card face down\'>';
+	}
 }
 
 function isTwoCards() {
