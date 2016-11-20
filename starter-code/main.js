@@ -19,19 +19,29 @@ function isMatch() {
 		alert("You found a match.")
 	else
 		alert("No match! Sorry, try again.")
-	
-	var cards = document.querySelectorAll('.card');
-	for (var i = 0; i < cards.length; i++) {
-		cards[i].innerHTML = "";
-	}
-	cards = ["queen", "queen", "king", "king"];
+
+	var card = document.getElementsByClassName('card');
+	// idx = 0;
+	// while (idx < card.length) {
+	// 	card[idx++].innerHTML = '<img src = \'facedown.jpg\' alt = \'Card face down\'>';
+	// }
 }
 
 function isTwoCards() {
-	cardsInPlay.push(this.getAttribute('data-card'));
+	
+	dataCard = this.getAttribute('data-card');
+	cardsInPlay.push(dataCard);
+
+	if (dataCard === 'king') {
+		this.innerHTML = '<img src = \'king.jpg\' alt = \'King of Hearts\'>';
+	}
+
+	if (dataCard === 'queen') {
+		this.innerHTML = '<img src = \'queen.jpg\' alt = \'Queen of Hearts\'>';
+	}
 
 	if (cardsInPlay.length === 2) {
-		isMatch(cardsInPlay);
+		isMatch();
 		cardsInPlay = [];
 	}
 }
@@ -44,31 +54,10 @@ function createBoard() {
 		var divElement = document.createElement('div');
 		divElement.className = 'card';
 		divElement.setAttribute('data-card', cards[i]);
+		divElement.innerHTML = '<img src = \'facedown.jpg\' alt = \'Card face down\'>';
 		divElement.addEventListener('click', isTwoCards);
 		gameBoard.appendChild(divElement);
-
-		// divElement.addEventListener('click', function() {
-		// 	if (divElement.getAttribute('data-card') === "king"){
-		// 		divElement.innerHTML = "<img src=\"king.png\" alt=\"King of Hearts\" />";
-		// 	}
-		// 	else {
-		// 		divElement.innerHTML = "<img src=\"queen.png\" alt=\"Queen of Hearts\" />";
-		// 	}
-		// 	console.log("This is " + divElement.getAttribute('data-card'));
-		// });
-
 	}
-}
-
-function flipCard() {
-	var cards = document.querySelectorAll('.card');
-	// for (var i = 0; i < cards.length; i++) {
-	// 	cards[i].addEventListener('click', function() {
-	// 		if (cards[i].getAttribute('data-card') === 'king') {
-	// 			console.log("found king");
-	// 		}
-	// 	});
-	// }
 }
 
 createBoard();
